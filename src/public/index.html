@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="icon" href="/favicon.jpg">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/global.css">
 
-    <!-- SOCKET.IO -->
+     <title>Manajemen Whatsapp</title>
+<!--
+
+DIGITAL TREND
+
+https://templatemo.com/tm-538-digital-trend
+
+-->
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="http://plp.ftikuinkhas.com/css/bootstrap.min.css">
+     <link rel="stylesheet" href="http://plp.ftikuinkhas.com/css/font-awesome.min.css">
+     <link rel="stylesheet" href="http://plp.ftikuinkhas.com/css/aos.css">
+     <link rel="stylesheet" href="http://plp.ftikuinkhas.com/css/owl.carousel.min.css">
+     <link rel="stylesheet" href="http://plp.ftikuinkhas.com/css/owl.theme.default.min.css">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="http://plp.ftikuinkhas.com/css/templatemo-digital-trend.css">
+	     <!-- SOCKET.IO -->
     <!-- Check the server url to replace this -->
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -19,81 +35,125 @@
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li class="active">
-                <a href="/" class="active">home1</a>
-            </li>
-            <li>
-                <a href="/check-emit">check-emit</a>
-            </li>
-            <li>
-                <a href="/docs">docs</a>
-            </li>
-        </ul>
+     <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+              WHATSAPP FTIK UIN KHAS
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
     </nav>
-    
-    <div id="wrapper" class="container-fluid row">
-        <div class="col-md-6">
-            <form id="token-form">
+
+
+     <!-- HERO -->
+     <section class="hero hero-bg d-flex justify-content-center align-items-center">
+               <div class="container">
+                    <div class="row">
+
+
+
+
+
+
+
+
+                        <div class="col-lg-6 col-md-10 col-12 d-flex flex-column justify-content-center align-items-center">
+                              <div class="hero-text">
+<form id="token-form">
                 <div>
-                    This input is for post the Token, create your own token
+                    Masukkan Kode Token yang akan digunakan
                     <br />
-                    <input type="text" name="token" value="test" class="form-control mb-2">
-                    <button type="submit" name="submit" class="btn btn-sm btn-primary">CONNECT</button>
-                    <button type="button" name="delete" class="btn btn-sm btn-danger delete-token">delete</button>
+                    <input type="text" name="token" id="token" value="" class="form-control mb-2">
+                    <input type="hidden" class="form-control" id="mapel" name="mapel"  value="coba" required>
+                    <!--<button type="submit" name="submit" class="btn btn-sm btn-primary">CONNECT</button>
+                    <button type="button" name="delete" class="btn btn-sm btn-danger delete-token">Hapus</button>-->
+                    <button type="button" name="konek" class="btn btn-sm btn-primary konek">Koneksi</button>
                 </div>
                 <div>
-                    <label for="">When instance is created, token will show in here.</label>
-                    <br />
+                    <!--<label for="">When instance is created, token will show in here.</label>
+                    <br />-->
                     <!-- YOU MUST PROVIDE THE TOKEN ON YOUR CLIENT SIDE, TO CHECK THE OWNER OF THE QRCODE, USE URL PARAMETER, QUERYSTRING, SESSIO OR JSONWEBOKEN AS DEFAULT VALUE-->
-                    <input id="token" type="text" value="test" placeholder="verified by token" class="form-control" disabled>
+                    <input id="idtoken" name="idtoken" type="hidden" value="" placeholder="verified by token" class="form-control" disabled>
                 </div>
+                <br/>
                 <!-- TRIAL SEND MESSAGE -->
                 <div id="form-send" style="display: block;">
-                    FORM SEND MESSAGE.
+                    Kirim Pesan.
                     <br />
-                    Use 00000@s.whatsapp.net
+                    Masukkan nomor Whatsapp, gunakan 62 didepan
                     <br />
                     <input name="number" class="number form-control" style="margin-top: 5px;" placeholder="000000@s.whatsapp.net" />
                     <br />
+                    Masukkan Pesan yang akan dikirim.
                     <textarea rows="5" class="message form-control" style="margin-top: 5px;" placeholder="sample message"></textarea>
                     <br />
-                    <button class="send-message btn btn-success" type="button" onclick="sendMessage()">send</button>
+                    <button class="send-message btn btn-success" type="button" onclick="sendMessage()">Kirim</button>
                 </div>
             </form>
-        </div>
+                              </div>
+                        </div>
 
-        <div class="col-md-6">
-            <!-- SAMPLE IMAGE TO GENERATE QRCODE -->
-            <div id="qrcode-container">
-                <img id="qrcode" src="https://ndalu.id/favicon.png" alt="">
-            </div>
-        </div>
-    
-    </div>
-    <!-- THIS JUST PRE FOR SHOWING THE JSON FROM SERVER -->
+                        <div class="col-lg-6 col-12">
+						<div id="qrcode-container">
+                          <div class="hero-image" data-aos="fade-up" data-aos-delay="300">
+							<img id="qrcode" src="http://plp.ftikuinkhas.com/no_wifi.png" alt="">
+						  </div>
+                          </div>
+                        </div>
+
+                    </div>
+<!-- THIS JUST PRE FOR SHOWING THE JSON FROM SERVER -->
     <pre id="pre">{
     message: "Here all the json will show"
-}</pre>
-    
-    <!-- THIS INPUT IS FOR POST TOKEN -->
+}</pre>               </div>
+     </section>
 
-    <script>
+
+
+     <!-- SCRIPTS -->
+     <script src="http://plp.ftikuinkhas.com/js/jquery.min.js"></script>
+     <script src="http://plp.ftikuinkhas.com/js/bootstrap.min.js"></script>
+     <script src="http://plp.ftikuinkhas.com/js/aos.js"></script>
+     <script src="http://plp.ftikuinkhas.com/js/owl.carousel.min.js"></script>
+     <script src="http://plp.ftikuinkhas.com/js/smoothscroll.js"></script>
+     <script src="http://plp.ftikuinkhas.com/js/custom.js"></script>
+<script>
 
         // prompter optional
         const pre = document.querySelector('#pre')
         // element token or your PHP session/database token
-        const checkToken = document.querySelector('#token')
+        const checkToken = document.querySelector('#idtoken')
         // element image
         const qrcode = document.querySelector('#qrcode')
         // element post or when the button hit to post create-instance
-        const form = document.querySelector('#token-form')
+        /*const form = document.querySelector('#token-form')
         if ( form ) form.addEventListener('submit', async (e) => {
             e.preventDefault()
             document.querySelector('#form-send').setAttribute('style', 'block')
             const token = document.querySelector('input[name="token"]')
+            pre.innerHTML = JSON.stringify({
+                    message: token
+                }, undefined, 2)
+            
             if ( !token.value ) return
+            //const res = await startConnection(token)
+            if (res.qrcode) { // if result has qrcode
+                qrcode.src = res.qrcode // set element image src to res.qrcode
+            }
+            // diplay result to prompter
+            return pre.innerHTML = JSON.stringify(res, undefined, 2)
+        })*/
+
+        // koneksi token
+        const konek = document.querySelector('.konek')
+        if ( konek ) konek.addEventListener('click', async () => {
+            const token = document.getElementById("token").value
             const res = await startConnection(token)
             if (res.qrcode) { // if result has qrcode
                 qrcode.src = res.qrcode // set element image src to res.qrcode
@@ -117,7 +177,7 @@
             return res
         }
 
-        document.addEventListener('DOMContentLoaded', startConnection);
+        //document.addEventListener('DOMContentLoaded', startConnection);
 
         // delete token / delete instance
         const deleteToken = document.querySelector('.delete-token')
@@ -133,7 +193,7 @@
                 })
                 const res = await req.json()
                 pre.innerHTML = JSON.stringify(res, undefined, 2)
-                qrcode.src = "https://ndalu.id/favicon.png"
+                qrcode.src = "http://plp.ftikuinkhas.com/no_wifi.png"
             } else {
                 pre.innerHTML = JSON.stringify({
                     message: 'Cannot delete empty token'
@@ -165,7 +225,7 @@
                     pre.innerHTML = JSON.stringify(res, undefined, 2)
                 }
             } else {
-                alert('Number must end with @s.whatsapp.net')
+                alert('Nomor tidak boleh kosong')
             }
         }
 
@@ -192,7 +252,7 @@
                 pre.innerHTML = JSON.stringify(data, undefined, 2)
                 if (data.error) {
                     // console.log(data)
-                    qrcode.src = "https://ndalu.id/favicon.png"
+                    qrcode.src = "http://plp.ftikuinkhas.com/no_wifi.png"
                 }
             }
         })
@@ -228,7 +288,7 @@
             // Check if token is same with te data.token, show the qrcode
             if (data.token === checkToken.value) { // remove if you want to watching entire connection
                 pre.innerHTML = JSON.stringify(data, undefined, 2)
-                qrcode.src = "https://ndalu.id/favicon.png"
+                qrcode.src = "http://plp.ftikuinkhas.com/no_wifi.png"
             }
         })
         
@@ -237,12 +297,11 @@
             // Check if token is same with te data.token, show the qrcode
             if (data.token === checkToken.value) { // remove if you want to watching entire connection
                 pre.innerHTML = JSON.stringify(data, undefined, 2)
-                qrcode.src = "https://ndalu.id/favicon.png"
+                qrcode.src = "http://plp.ftikuinkhas.com/no_wifi.png"
             }
         })
         // CONSUME SOCKET IO CLIENT SIDE END
 
     </script>
-
 </body>
 </html>
